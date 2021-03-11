@@ -26,6 +26,12 @@ Route::get('profile/{id}/edit', 'ProfileController@edit');
 Route::put('/profile/{id}', 'ProfileController@update');
 Route::delete('/profile/{id}', 'ProfileController@destroy');
 
+//Article CRUD
+Route::get('/article', function () {
+    return view('article.index');
+});
+Route::get('/article/create', 'ArticleController@create');
+
 // Route::get('/pertanyaan', 'pertanyaanController@index')->name('home');
 // Route::get('/pertanyaan/create', 'pertanyaanController@create');
 // Route::post('/pertanyaan', 'pertanyaanController@store');
