@@ -3,72 +3,73 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use DB;
-use App\User;
+use App\Profile;
 use File;
 
 class ProfileController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+    }
+
+    public function index(){
+        $profiles = Profile::all();
+
+        return view('profile.index', compact('profiles'));
+    }
+    
     public function create(){
         return view('profile.create');
     }
 
     public function store(Request $request){
-
         $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:Users',
-            'password' => 'required',
+            'nama_lengkap' => 'required',
+            'institusi' => 'required',
             'tgl_lahir' => 'required',
             'alamat' => 'required',
-            'no_telepon' => 'required',
-            'institusi' => 'required'
-            
-
+            'no_telepon' => 'required'
         ]);
 
-        $profile = new User;
-        $profile->name = $request["name"];
-        $profile->email = $request["email"];
-        $profile->password = $request["password"];
-        $profile->tgl_lahir = $request["tgl_lahir"];
-        $profile->alamat = $request["alamat"];
-        $profile->no_telepon = $request["no_telepon"];
-        $profile->institusi = $request["institusi"];
-        $profile->foto = $request["foto"];
-        $profile->save();
-
-        return redirect('/profile');
+        $user = Auth::user();
+        $user->profile()->create($request->all());
+        return redirect('/profile')->with('success', 'Profil berhasil dibuat');
     }
-    public function index(){
-        $users = User::all();
-        // dd($users);
-        return view('profile.show', compact('users'));
-    }
+    
     public function edit($id) {
-        $users = User::all();
+        $profile = profile::where('id',$id)->get();  
 
-        return view('profile.edit', compact('users'));
+        return view('profile.edit', compact('profile'));
     }
     
     public function update($id, Request $request){
-        $update = User::where('id', $id)->update([
-            "name" => $request["name"],
-            "email" => $request["email"],
-            "password" => $request["password"],
+        $request->validate([
+            'nama_lengkap' => 'required',
+            'institusi' => 'required',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required',
+            'no_telepon' => 'required'
+        ]);
+
+        $update = Profile::where('id', $id)->update([
+            "nama_lengkap" => $request["nama_lengkap"],
+            "institusi" => $request["institusi"],
             "tgl_lahir" => $request["tgl_lahir"],
             "alamat" => $request["alamat"],
             "no_telepon" => $request["no_telepon"],
-            "institusi" => $request["institusi"],
             "foto" => $request["foto"]
         ]);
-        return redirect('/profile')->with('success', 'Profile berhasil di edit!');
+
+        return redirect('/profile')->with('success', 'Profile berhasil diedit');
     }
     
     public function destroy($id)
     {
-        $pengguna = User::find($id);
-        $pengguna->delete();
-        return redirect('/profile');
+        Profile::destroy($id);
+        
+        return redirect('/profile')->with('success', 'Profile berhasil dihapus');
     }
 }

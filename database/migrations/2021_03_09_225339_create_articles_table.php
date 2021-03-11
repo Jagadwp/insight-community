@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('judul');
             $table->longText('isi');
-            $table->date('tanggal_dibuat');
+            $table->date('tgl_dibuat');
 
             // foreign key
             $table->unsignedBigInteger('user_id');

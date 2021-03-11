@@ -19,8 +19,8 @@ class CreateArticleHasTagsTable extends Migration
             // foreign key
             $table->unsignedBigInteger('article_id');
             $table->foreign('article_id')->references('id')->on('articles');
-            $table->unsignedBigInteger('comment_id');
-            $table->foreign('comment_id')->references('id')->on('comments');
+            $table->unsignedBigInteger('tag_id');
+            $table->foreign('tag_id')->references('id')->on('tags');
             
             $table->timestamps();
         });

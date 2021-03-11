@@ -19,9 +19,9 @@ Route::get('/master', function () {
     return view('adminlte.master');
 });
 
+Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/create', 'ProfileController@create');
 Route::post('/profile', 'ProfileController@store');
-Route::get('/profile', 'ProfileController@index');
 Route::get('profile/{id}/edit', 'ProfileController@edit');
 Route::put('/profile/{id}', 'ProfileController@update');
 Route::delete('/profile/{id}', 'ProfileController@destroy');
