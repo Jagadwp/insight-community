@@ -12,13 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('article.index');
 });
 
 Route::get('/master', function () {
     return view('adminlte.master');
 });
 
+//Profile CRUD
 Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/create', 'ProfileController@create');
 Route::post('/profile', 'ProfileController@store');
@@ -27,18 +28,14 @@ Route::put('/profile/{id}', 'ProfileController@update');
 Route::delete('/profile/{id}', 'ProfileController@destroy');
 
 //Article CRUD
-Route::get('/article', function () {
-    return view('article.index');
-});
-Route::get('/article/create', 'ArticleController@create');
+Route::get('/article', 'articleController@index');
+Route::get('/article/create', 'articleController@create');
+Route::post('/article', 'articleController@store');
+Route::get('article/{id}/edit', 'articleController@edit');
+Route::put('/article/{id}', 'articleController@update');
+Route::delete('/article/{id}', 'articleController@destroy');
 
-// Route::get('/pertanyaan', 'pertanyaanController@index')->name('home');
-// Route::get('/pertanyaan/create', 'pertanyaanController@create');
-// Route::post('/pertanyaan', 'pertanyaanController@store');
-// Route::get('/pertanyaan/{pertanyaan_id}', 'pertanyaanController@show');
-// Route::get('/pertanyaan/{pertanyaan_id}/edit', 'pertanyaanController@edit');
-// Route::put('/pertanyaan/{pertanyaan_id}', 'pertanyaanController@update');
-// Route::delete('/pertanyaan/{pertanyaan_id}', 'pertanyaanController@destroy');
+
 // Route::resource('pertanyaan', 'pertanyaanController');
 
 Auth::routes();

@@ -3,54 +3,66 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Article;
 use File;
 
 class ArticleController extends Controller
 {
-    public function create(){
+    public function index()
+    {
+        $users = Article::all();
+        // dd($users);
+        return view('article.index', compact('users'));
+    }
+
+    public function create()
+    {
         return view('article.create');
-}
-public function store(Request $request){
+    }
 
-    $request->validate([
-        'isi' => 'required',
-        'judul' => 'required|unique:Users',
+    public function store(Request $request)
+    {
+        \dd($request);
+        $request->validate([
+            'judul' => 'required|unique:Users',
+            'isi' => 'required',
+        ]);
+
+        $user = Auth::user();
+        $user->articles()->create($request->all());
+
+        return redirect('/article')->with('success', 'Artikel berhasil dibuat');;
+    }
+
+    
+    public function edit($id) 
+    {
+        $article = Article::where('id',$id)->get();
+
+        return view('article.edit', compact('article'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'isi' => 'required'
+        ]);
+
+        $update = Article::where('id', $id)->update([
+            "judul" => $request["judul"],
+            "isi" => $request["isi"]
+        ]);
+
+        return redirect('/article')->with('success', 'Artikel berhasil di edit!');
+    }
+
+    public function destroy($id)
+    {
+        Article::destroy($id);
         
-
-    ]);
-
-    $article = new Article;
-    $article->judul = $request["judul"];
-    $article->isi = $request["isi"];
-    $article->save();
-
-    return redirect('/article');
-}
-public function index(){
-    $users = Article::all();
-    // dd($users);
-    return view('article.index', compact('users'));
-}
-public function edit($id) {
-    $users = Article::all();
-
-    return view('article.edit', compact('users'));
-}
-
-public function update($id, Request $request){
-    $update = Article::where('id', $id)->update([
-        "isi" => $request["isi"],
-        "judul" => $request["judul"],
-    ]);
-    return redirect('/article')->with('success', 'Article berhasil di edit!');
-}
-
-public function destroy($id)
-{
-    $pengguna = Article::find($id);
-    $pengguna->delete();
-    return redirect('/article');
-}
+        return redirect('/article')->with('success', 'article berhasil dihapus');
+    }
 }

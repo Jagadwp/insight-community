@@ -12,20 +12,23 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index']);
+        $this->middleware('auth');
     }
 
-    public function index(){
+    public function index()
+    {
         $profiles = Profile::all();
 
         return view('profile.index', compact('profiles'));
     }
     
-    public function create(){
+    public function create()
+    {
         return view('profile.create');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'nama_lengkap' => 'required',
             'institusi' => 'required',
@@ -36,16 +39,19 @@ class ProfileController extends Controller
 
         $user = Auth::user();
         $user->profile()->create($request->all());
+        
         return redirect('/profile')->with('success', 'Profil berhasil dibuat');
     }
     
-    public function edit($id) {
+    public function edit($id) 
+    {
         $profile = profile::where('id',$id)->get();  
 
         return view('profile.edit', compact('profile'));
     }
     
-    public function update($id, Request $request){
+    public function update($id, Request $request)
+    {
         $request->validate([
             'nama_lengkap' => 'required',
             'institusi' => 'required',

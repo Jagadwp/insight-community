@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
-    // protected $fillable = ["isi", "judul"];
+    protected $fillable = ['judul', 'isi'];
 
     public function user()
     {
