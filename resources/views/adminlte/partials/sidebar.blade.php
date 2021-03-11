@@ -17,7 +17,7 @@
         </div>
         <div class="info">
           @if (Auth::check())
-            <a href="#" class="d-block">{{ Auth::user()->name}}</a>
+            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
           @else
             <p class="text-muted text-center">( Anda belum login )</p>
           @endif

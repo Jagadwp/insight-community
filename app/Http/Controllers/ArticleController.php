@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Article;
 use File;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ArticleController extends Controller
 {
@@ -32,6 +33,8 @@ class ArticleController extends Controller
 
         $user = Auth::user();
         $user->articles()->create($request->all());
+        
+        Alert::success('Success', 'Artikel berhasil dibuat');
 
         return redirect('/article')->with('success', 'Artikel berhasil dibuat');;
     }
@@ -55,14 +58,14 @@ class ArticleController extends Controller
             "judul" => $request["judul"],
             "isi" => $request["isi"]
         ]);
-
+        Alert::success('Success', 'Artikel berhasil diedit!');
         return redirect('/article')->with('success', 'Artikel berhasil di edit!');
     }
 
     public function destroy($id)
     {
         Article::destroy($id);
-        
+        Alert::warning('warning', 'Artikel berhasil dihapus');
         return redirect('/article')->with('success', 'article berhasil dihapus');
     }
 }
