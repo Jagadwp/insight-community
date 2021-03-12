@@ -31,7 +31,7 @@
     <!-- Profile links -->
     <div class="profile-box ml-auto mr-2">
       @if (Auth::check())
-        <a href="/profile" class="btn btn-primary nav-link">Profile</a>
+        <a href="/profile" class="btn btn-primary nav-link">Profil</a>
       @else
         <a href="/profile" class="btn btn-primary nav-link">Login</a>
       @endif

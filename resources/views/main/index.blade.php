@@ -39,7 +39,7 @@
                     <span class="float-right">
                         <a href="/comment/{{ $article->id }}/create" class="link-black text-sm">
                             <i class="far fa-comments mr-1"></i>
-                            <span class="total-comment">(2)</span>
+                            {{-- <span class="total-comment">(2)</span> --}}
                             Tambah komentar
                         </a>
                     </span>

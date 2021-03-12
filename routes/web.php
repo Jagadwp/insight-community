@@ -40,7 +40,6 @@ Route::get('/comment/{id}/edit', 'CommentController@edit');
 Route::put('/comment/{id}', 'CommentController@update');
 Route::delete('/comment/{id}', 'CommentController@destroy');
 
-
 // Route::resource('pertanyaan', 'pertanyaanController');
 
 Auth::routes();
