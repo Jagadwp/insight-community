@@ -30,7 +30,7 @@
           <li class="nav-item">
             <a href="/profile" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
-              <p> Profile <span class="right badge badge-info">Periksa</span></p>
+              <p> Profil <span class="right badge badge-info">Periksa</span></p>
             </a>
           </li>
           <li class="nav-item">

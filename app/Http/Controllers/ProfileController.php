@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Profile;
-use File;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -21,8 +20,7 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $profiles = Profile::where('user_id',$user->id)->get(); 
-        // $profiles = Profile::find(5); 
-        // \dd($profiles);
+        
         return view('profile.index', compact('profiles'));
     }
     
@@ -43,9 +41,10 @@ class ProfileController extends Controller
 
         $user = Auth::user();
         $user->profile()->create($request->all());
-        Alert::success('Success!', 'Profile berhasil dibuat!');
 
-        return redirect('/profile')->with('success', 'Profil berhasil dibuat');
+        Alert::success('Sukses!', 'Profil berhasil dibuat!');
+
+        return redirect('/profile');
     }
     
     public function edit($id) 
@@ -73,15 +72,18 @@ class ProfileController extends Controller
             "no_telepon" => $request["no_telepon"],
             "foto" => $request["foto"]
         ]);
-        Alert::success('Success!', 'Profile berhasil diedit!');
-        return redirect('/profile')->with('success', 'Profile berhasil diedit');
+
+        Alert::success('Sukses!', 'Profil berhasil diedit!');
+        
+        return redirect('/profile');
     }
     
     public function destroy($id)
     {
         Profile::destroy($id);
-        Alert::warning('warning', 'profil berhasil dihapus');
 
-        return redirect('/profile')->with('success', 'Profile berhasil dihapus');
+        Alert::warning('Info', 'Profil berhasil dihapus!');
+
+        return redirect('/profile');
     }
 }

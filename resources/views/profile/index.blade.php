@@ -5,12 +5,12 @@
         @forelse($profiles as $key => $pengguna)
             <div class="row mb-2">
                 <div class="col-sm-6">
-                <h1>Profile</h1>
+                <h1>Profil</h1>
                 </div>
                 <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">profile</li>
+                    <li class="breadcrumb-item"><a href="#">Beranda</a></li>
+                    <li class="breadcrumb-item active">Profil</li>
                 </ol>
                 </div>
             </div>
@@ -68,12 +68,12 @@
                 <!-- /.card -->
             </div>
             <!-- /.col -->
-            <a href="/profile/{{$pengguna->id}}/edit" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
+            <a href="/profile/{{$pengguna->id}}/edit" class="btn btn-primary btn-block"><b>Edit Profil</b></a>
 
             <form action="/profile/{{ $pengguna->id }}" method="post">
                 @csrf
                 @method('DELETE')
-                <input type="submit" value="Hapus Profile" class="btn btn-danger btn-block mt-2">
+                <input type="submit" value="Hapus Profil" class="btn btn-danger btn-block mt-2">
             </form>
 
             </div>
