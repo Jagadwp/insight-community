@@ -58,6 +58,7 @@
             @enderror
         </div>
 
+        
         {{-- input foto --}}
         <div class="form-group">
           <label for="exampleInputFile">Foto</label>

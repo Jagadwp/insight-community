@@ -12,7 +12,7 @@
         @endif
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/article" class="nav-link">Artikel</a>
+        <a href="/main" class="nav-link">Artikel</a>
       </li>
     </ul>
 

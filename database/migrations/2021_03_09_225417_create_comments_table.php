@@ -16,7 +16,7 @@ class CreateCommentsTable extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->longText('isi');
-            $table->date('tgl_dibuat');
+            $table->date('tgl_dibuat')->nullable();
 
             // foreign key
             $table->unsignedBigInteger('user_id');

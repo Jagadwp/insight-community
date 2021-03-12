@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('article.index');
-});
+Route::get('/', 'MainController@index');
 
 Route::get('/master', function () {
     return view('adminlte.master');
@@ -23,17 +21,24 @@ Route::get('/master', function () {
 Route::get('/profile', 'ProfileController@index');
 Route::get('/profile/create', 'ProfileController@create');
 Route::post('/profile', 'ProfileController@store');
-Route::get('profile/{id}/edit', 'ProfileController@edit');
+Route::get('/profile/{id}/edit', 'ProfileController@edit');
 Route::put('/profile/{id}', 'ProfileController@update');
 Route::delete('/profile/{id}', 'ProfileController@destroy');
 
-//Article CRUD
-Route::get('/article', 'articleController@index');
-Route::get('/article/create', 'articleController@create');
-Route::post('/article', 'articleController@store');
-Route::get('article/{id}/edit', 'articleController@edit');
-Route::put('/article/{id}', 'articleController@update');
-Route::delete('/article/{id}', 'articleController@destroy');
+//Main CRUD
+Route::get('/main', 'MainController@index');
+Route::get('/main/create', 'MainController@create');
+Route::post('/main', 'MainController@store');
+Route::get('/main/{id}/edit', 'MainController@edit');
+Route::put('/main/{id}', 'MainController@update');
+Route::delete('/main/{id}', 'MainController@destroy');
+
+//Comment CRUD
+Route::get('/comment/{artikel_id}/create', 'CommentController@create');
+Route::post('/comment/{artikel_id}', 'CommentController@store');
+Route::get('/comment/{id}/edit', 'CommentController@edit');
+Route::put('/comment/{id}', 'CommentController@update');
+Route::delete('/comment/{id}', 'CommentController@destroy');
 
 
 // Route::resource('pertanyaan', 'pertanyaanController');

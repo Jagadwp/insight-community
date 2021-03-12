@@ -34,7 +34,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/article" class="nav-link">
+            <a href="/main" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>Artikel <span class="right badge badge-danger">Baru</span> </p>
             </a>

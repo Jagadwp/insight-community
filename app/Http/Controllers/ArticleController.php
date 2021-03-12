@@ -36,7 +36,7 @@ class ArticleController extends Controller
         
         Alert::success('Success', 'Artikel berhasil dibuat');
 
-        return redirect('/article')->with('success', 'Artikel berhasil dibuat');;
+        return redirect('/article')->with('success', 'Artikel berhasil dibuat');
     }
 
     

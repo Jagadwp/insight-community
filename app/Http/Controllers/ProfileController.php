@@ -19,8 +19,10 @@ class ProfileController extends Controller
 
     public function index()
     {
-        $profiles = Profile::all();
-
+        $user = Auth::user();
+        $profiles = Profile::where('user_id',$user->id)->get(); 
+        // $profiles = Profile::find(5); 
+        // \dd($profiles);
         return view('profile.index', compact('profiles'));
     }
     
