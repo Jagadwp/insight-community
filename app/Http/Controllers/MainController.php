@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Article;
+use App\Article_has_tag;
 use App\Comment;
+use App\Tag;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MainController extends Controller
@@ -47,15 +49,32 @@ class MainController extends Controller
      */
     public function store(Request $request)
     {
+        //memisahkan dengan koma ','
+        $tag_temp = explode(',', $request['tag']);
+        $tag_array = [];
+        foreach ($tag_temp as $tag) {
+            $tag_array[] = trim($tag);
+        }
+
+        // ambil atau create tag
+        $tag_ids = [];
+        foreach ($tag_array as $tag_name) {
+            $tag = Tag::firstOrCreate(['nama' => $tag_name]);
+            $tag_ids[] = $tag->id;
+        }
+
         $request->validate([
             'judul' => 'required|unique:Articles',
             'isi' => 'required',
         ]);
 
         $user = Auth::user();
-        $user->articles()->create($request->all());
+        $article = $user->articles()->create($request->all());
+        
+        //menambahkan ke artcle_id & tag_id tabel pivot
+        $article->tags()->sync($tag_ids);
 
-        Alert::success('Sukses!', 'Artikel berhasil dibuat!');
+        Alert::success('Sukses!', 'Artikel berhasil dibuat!');        
         
         return redirect('/main');
     }
@@ -116,10 +135,12 @@ class MainController extends Controller
      */
     public function destroy($id)
     {
+        Comment::where('article_id', $id)->delete();
+        Article_has_tag::where('article_id', $id)->delete();
         Article::destroy($id);
 
         Alert::warning('Info', 'Artikel berhasil dihapus');
-        
+
         return redirect('/main');
     }
 }

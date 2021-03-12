@@ -22,18 +22,28 @@
                             </div>
                         @enderror
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="isi">Isi</label>
                         <textarea name="isi" class="form-control" id="isi" cols="30" rows="10" 
-                            value="{{ old('isi') }}" placeholder="Tulis Isi"></textarea> 
-                            @error('isi')
-                            <div class="alert alert-danger">
+                        value="{{ old('isi') }}" placeholder="Tulis Isi"></textarea> 
+                        @error('isi')
+                        <div class="alert alert-danger">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
                     
+                    <div class="form-group">
+                        <label for="tag">Tags</label>
+                        <input type="text" class="form-control" id="tag" name="tag" 
+                            value="{{ old('tag') }}" placeholder="Contoh: 'akademik, organisasi, spritual'">
+                        @error('tag')
+                            <div class="alert alert-danger">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
@@ -42,5 +52,5 @@
             </form>
         </div>
     </div>
-
+    
 @endsection

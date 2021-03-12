@@ -35,14 +35,24 @@
                     {{ $article->isi }} 
                 </p>
                 <p>
-                    <a href="#" class="link-black text-sm mr-2"><i class="fas fa-tags"></i>Tags: </a>
-                    <span class="float-right">
-                        <a href="/comment/{{ $article->id }}/create" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i>
-                            {{-- <span class="total-comment">(2)</span> --}}
-                            Tambah komentar
-                        </a>
-                    </span>
+                    <div class="tags-container d-flex">
+                        <a href="#" class="link-black text-sm mr-n2"><i class="fas fa-tags"></i>Tags: </a>
+                        <ul class="d-flex ml-n4" style="list-style: none;">
+                            {{-- List Tags --}}
+                            @forelse ($article->tags as $tag)
+                                <li class="mr-2 btn-sm btn-info px-1 py-0">{{ $tag->nama }}</li>
+                            @empty
+                                <li class="mr-2 btn-sm btn-info px-1 py-0">Tanpa Tag</li>
+                            @endforelse
+                        </ul>
+                        <span class="ml-auto">
+                            <a href="/comment/{{ $article->id }}/create" class="link-black text-sm">
+                                <i class="far fa-comments mr-1"></i>
+                                {{-- <span class="total-comment">(2)</span> --}}
+                                Tambah komentar
+                            </a>
+                        </span>
+                    </div>
                 </p>
             </div>
         </div>
@@ -82,10 +92,8 @@
         @endforelse
         {{-- forelse comments end --}}
         <hr>
-        @empty
-        <tr colspan="3" class="ml-3">
-            <td>Tidak ada data</td>
-        </tr>  
+    @empty
+        <div class="ml-5 pl-2 mt-3">Tidak ada data</div>  
     @endforelse  
     {{-- forelse content end --}}
 @endsection
