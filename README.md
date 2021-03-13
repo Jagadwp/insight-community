@@ -12,8 +12,8 @@
     <a href="https://drive.google.com/drive/folders/1FzMrr1szT2mbJBWiPhv62kI89tVqKZLM" target="_blank">Link</a></p>
 
 <h1>Video Demo</h1>
-<p>Demo di Youtube: <a href="" target="_blank">link</a></p>
+<p>Demo di Youtube: <a href="" target="_blank">https://youtu.be/g029_lWJDs8</a></p>
 
 <h1>Link Deploy</h1>
-<p>Link Heroku: <a href="" target="_blank">link</a></p>
+<p>Link Heroku: <a href="" target="_blank">https://nameless-ridge-98025.herokuapp.com/</a></p>
 
