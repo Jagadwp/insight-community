@@ -26,7 +26,7 @@ class MainController extends Controller
     {
         $articles = Article::all();
         // \dd($articles);
-        // $comments = Comment::all();
+        $comments = Comment::all();
 
         return view('main.index', ['articles' => $articles]);
     }
@@ -64,7 +64,7 @@ class MainController extends Controller
         }
 
         $request->validate([
-            'judul' => 'required|unique:Articles',
+            'judul' => 'required|unique:articles',
             'isi' => 'required',
         ]);
 
@@ -75,7 +75,6 @@ class MainController extends Controller
         $article->tags()->sync($tag_ids);
 
         Alert::success('Sukses!', 'Artikel berhasil dibuat!');        
-        
         return redirect('/main');
     }
 

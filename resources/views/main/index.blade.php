@@ -80,9 +80,11 @@
                         </div>
                     </div>
                     <!-- /.user-block -->
-                    <p class="mb-2 mt-n3" style="font-size:0.9rem">
-                        {{ $comment->isi }}
-                    </p>
+                    <div style="padding-right: 15vw">
+                        <p class="mb-2 mt-n3" style="font-size:0.9rem">
+                            {{ $comment->isi }}
+                        </p>
+                    </div>
                 </div>
             </div>    
         @empty
