@@ -20,7 +20,7 @@ class CreateProfilesTable extends Migration
             $table->string('alamat');
             $table->string('no_telepon');
             $table->string('institusi');
-            $table->binary('foto')->nullable();
+            $table->string('foto')->nullable();
 
             // foreign key
             $table->unsignedBigInteger('user_id');

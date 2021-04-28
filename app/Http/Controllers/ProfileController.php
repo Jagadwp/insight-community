@@ -13,7 +13,7 @@ class ProfileController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()
@@ -40,10 +40,31 @@ class ProfileController extends Controller
         ]);
 
         $user = Auth::user();
-        $user->profile()->create($request->all());
-
-        Alert::success('Sukses!', 'Profil berhasil dibuat!');
-
+        
+        $data = $request->all();
+        $linkFoto =  $request->file('foto')->store('public/Foto_Profil');
+        $data['foto'] = substr($linkFoto, 6);
+        
+        $user->profile()->create($data);
+        
+        // $data['user_id'] = 3;
+        // $profile = Profile::create($data);
+        // if ($profile) {
+        //     Alert::success('Sukses!', 'Profil berhasil dibuat!');
+        //     $response = [
+        //         'code' => 201,
+        //         'status' => 'Success',
+        //         'data-profil' => $profile
+        //     ];
+        //     return response($response, 201);
+        // }
+        // $response = [
+        //     'code' => 406,
+        //     'status' => 'Failed',
+        //     'data' => "error"
+        // ];
+        // return response($response, 406);
+        
         return redirect('/profile');
     }
     

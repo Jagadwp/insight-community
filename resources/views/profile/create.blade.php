@@ -8,7 +8,7 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form role="form" action="/profile" method="POST">
+    <form role="form" action="/profile" method="POST" enctype="multipart/form-data">
       @csrf
       <div class="card-body">
 
@@ -58,19 +58,10 @@
             @enderror
         </div>
 
-        
         {{-- input foto --}}
         <div class="form-group">
-          <label for="exampleInputFile">Foto</label>
-          <div class="input-group">
-            <div class="custom-file">
-              <input type="file" class="custom-file-input" id="exampleInputFile">
-              <label class="custom-file-label" for="foto">Choose file</label>
-            </div>
-            <div class="input-group-append">
-              <span class="input-group-text">Upload</span>
-            </div>
-          </div>
+          <label for="foto">Foto</label>
+          <input type="file" class="form-control" id="foto" name="foto">
         </div>
       </div>
       <!-- /.card-body -->

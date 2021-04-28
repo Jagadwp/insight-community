@@ -12,16 +12,21 @@
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{ asset('/adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          @if (Auth::check())
-            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
-          @else
-            <p class="text-muted text-center">( Anda belum login )</p>
-          @endif
-        </div>
+        @if (Auth::check() && Auth::user()->profile()->exists())
+          <div class="image">
+            <img src="{{  asset('/storage' . Auth::user()->profile->foto) }}" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+              <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+          </div>
+        @else
+          <div class="image">
+            <img src="{{ asset('/adminlte/dist/img/AdminLTELogo.png') }}" class="img-circle elevation-2" alt="User Image">
+          </div>
+          <div class="info">
+            <p class="text-muted text-center">------</p>
+          </div>
+        @endif
       </div>
 
       <!-- Sidebar Menu -->
