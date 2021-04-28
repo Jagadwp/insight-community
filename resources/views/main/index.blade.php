@@ -16,7 +16,11 @@
                         <h3 class="text-primary">{{ $article->judul }}</h3>
                     </div>
                     <div class="row">
-                        <div class="description text-primary">{{ $article->user->profile->nama_lengkap }}</div>
+                        @if (Auth::check() && Auth::user()->profile()->exists())
+                            <div class="description text-primary">{{ $article->user->profile->nama_lengkap }}</div>
+                        @else
+                            <div class="description text-primary">{{ $article->user->name }}</div>
+                        @endif
                         <div class="description ml-2">{{ $article->created_at }}</div>
                         <div class="d-flex flex-row mt-n2 mr-n3 ml-auto">
                             <a href="/main/{{ $article->id }}/edit" class="btn btn-default mx-1">Edit</a>
@@ -66,7 +70,11 @@
                 <div class="px-5">
                     <div class="py-2">
                         <div class="row">
-                            <p class="text-primary">{{ $comment->user->profile->nama_lengkap }}</p>
+                            @if (Auth::check() && Auth::user()->profile()->exists())
+                                <p class="text-primary">{{ $comment->user->profile->nama_lengkap }}</p>
+                            @else
+                                <p class="text-primary">{{ $comment->user->name }}</p>
+                            @endif
                             <div class="description ml-2 my-0">{{ $comment->created_at }}</div>
                             <div class="d-flex py-n3 ml-auto">
                                 <a href="/comment/{{ $comment->id }}/edit" class="btn btn-default mx-1">Edit</a>
