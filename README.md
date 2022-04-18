@@ -1,4 +1,4 @@
-<h1>Kelompok 22</h1>
+<h1>Insight Community: Simple Opinion Platform</h1>
 <hr>
 <ul>
     <li>Ramadhan Perwira Jati (@ramaperwira69)</li>
